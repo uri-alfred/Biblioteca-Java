@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>BiblioUTEQ</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <script src="/js/jquery.js"></script>
+	<script src="/js/jquery.dataTables.min.js"></script>
+	<link rel="stylesheet" href="/css/estilos.css">
+    </head>
+    <body>
+        <!-- fragmento de menu -->
+        <div data-th-replace="~{fragments/menu :: menu}">...</div>
+        <!-- body -->
+        <div class="row">
+            <div class="col-10">
+                <div class="container mt-4">
+                    <h1 data-th-text="${tituloOper}"></h1>
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a class="btn btn-outline-danger" data-th-href="@{/libros/gestor-libros}">
+                        Cancelar
+                    </a>
+                </div>
+                <br />
+                <div class="me-5 ms-5">
+                    <div class="card card-body">
+                        <form data-th-action="@{/libros/guardar-libro}" 
+                              data-th-object="${libro}" method="POST">
+                            <input type="hidden" id="operacion" name="operacion" data-th-value="${operacion}" />
+                            <input type="hidden" id="idLib" name="idLib" data-th-field="*{idLib}" />
+                            <div class="row g-3 align-items-center">
+                                <div class="col-sm-4">
+                                    <!--titulo-->
+                                    <div class="col-auto">
+                                        <label for="inputTitulo" class="col-form-label">* Titulo</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="text" id="inputTitulo" class="form-control" 
+                                               aria-labelledby="tituloHelpInline" data-th-field="*{tituloLib}">
+                                        
+                                    </div>
+                                    <div class="col-auto">
+                                        <span id="tituloHelpInline" class="form-text text-danger-emphasis" data-th-if="#{fields.hasErrors('tituloLib')}"
+                                              data-th-errors="*{tituloLib}">Error titulo</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <!--autor-->
+                                    <div class="col-auto">
+                                        <label for="inputAutor" class="col-form-label">* Autor</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="text" id="inputAutor" class="form-control" 
+                                               aria-labelledby="autorHelpInline" data-th-field="*{autorLib}">
+                                    </div>
+                                    <div class="col-auto">
+                                        <span id="autorHelpInline" class="form-text text-danger-emphasis" data-th-if="#{fields.hasErrors('autorLib')}"
+                                              data-th-errors="*{autorLib}">Error autor</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <!--Año-->
+                                    <div class="col-auto">
+                                        <label for="inputAnio" class="col-form-label">* Año</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="number" id="inputAnio" class="form-control" 
+                                               aria-labelledby="anioHelpInline" data-th-field="*{anioLib}">
+                                    </div>
+                                    <div class="col-auto">
+                                        <span id="anioHelpInline" class="form-text text-danger-emphasis" data-th-if="#{fields.hasErrors('anioLib')}"
+                                              data-th-errors="*{anioLib}">Error año</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <!--editorial-->
+                                    <div class="col-auto">
+                                        <label for="inputEditorial" class="col-form-label">* Editorial</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="text" id="inputEditorial" class="form-control" 
+                                               aria-labelledby="editorialHelpInline" data-th-field="*{editorialLib}">
+                                    </div>
+                                    <div class="col-auto">
+                                        <span id="editorialHelpInline" class="form-text text-danger-emphasis" data-th-if="#{fields.hasErrors('editorialLib')}"
+                                              data-th-errors="*{editorialLib}">Error editorial</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <!--categoria-->
+                                    <div class="col-auto">
+                                        <label for="idCategoria" class="col-form-label">* Categoría</label>
+                                    </div>
+                                    <div data-th-if="${operacion} == 'alta'">
+                                        <select class="form-select form-control" aria-label="Default select example"
+                                                id="idCategoria" name="idCategoria"  data-th-value="${idCategoria}">
+                                            <option value="0" selected>Selecciona una categoría</option>
+                                            <optgroup data-th-each="cat : ${cats}">
+                                                <option data-th-value="${cat.idCat}" data-th-text="${cat.nameCat}" >opcion</option>
+                                            </optgroup>
+                                        </select>
+                                        <div class="col-auto">
+                                            <span id="idCategoria" class="form-text text-danger-emphasis" data-th-if="#{fields.hasErrors('categoria')}"
+                                                  data-th-errors="*{categoria}">Error editorial</span>
+                                        </div>
+                                    </div>
+                                    <div data-th-if="${operacion} == 'editar'">
+                                        <select class="form-select form-control" aria-label="Default select example"
+                                                id="idCategoria" name="idCategoria"  data-th-value="${idCategoria}">
+                                            <optgroup data-th-each="cat : ${cats}">
+                                                <option data-th-value="${cat.idCat}" data-th-text="${cat.nameCat}"
+                                                        data-th-selected="${cat.idCat} == ${libro.categorias.idCat}">opcion</option>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-4">
+                                    <!--boton-->
+                                    <div class="col-auto">
+                                        <button class="btn btn-success" type="submit" data-th-text="${textBtn}">...</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-2">
+                <!--mapa del sitio-->
+                <div data-th-replace="~{fragments/mapasitio :: mapasitio}">...</div>
+            </div>
+        </div>
+        <script src="/js/buscador.js"></script>
+    </body>
+</html>

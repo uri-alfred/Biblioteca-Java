@@ -1,0 +1,15 @@
+
+.icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #46b5d1;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+.icon span {
+    font-size: 20px;
+    color: #fff;
+}
+
+

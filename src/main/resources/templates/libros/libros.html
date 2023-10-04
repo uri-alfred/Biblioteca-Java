@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>BiblioUTEQ</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <script src="/js/jquery.js"></script>
+        <script src="/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" href="/css/estilos.css">
+    </head>
+    <body>
+        <!-- fragmento de menu -->
+        <div data-th-replace="fragments/menu :: menu">...</div>
+        <!-- body -->
+        <div class="row">
+            <div class="col-10">
+                <div class="container mt-4">
+                    <h1>Libros</h1>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a class="btn btn-primary me-md-2"
+                           data-th-href="@{/libros/gestor-libros}">Gestor de libros</a>
+                    </div>
+                </div>
+                <br />
+                <div class="me-5 ms-5">
+                    <div class="card text-center">
+                        <div class="card-header" >
+                            <ul class="nav nav-tabs card-header-tabs justify-content-center">
+                                <li class="nav-item">
+                                    <a class="nav-link" data-th-href="@{/libros/} + 'default'"
+                                       data-th-classappend="${tipo} == 'default' ? ' active' : ''" aria-current="true">Buscar libro</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-th-href="@{/libros/} + 'google'"
+                                       data-th-classappend="${tipo} == 'google' ? ' active' : ''" aria-current="true">Buscar en Google</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div data-th-if="${tipo} == 'default'">
+                                <form class="d-flex" role="search" data-th-action="@{/libros/buscar-libros}" method="post">
+                                    <input class="form-control me-2" type="search" placeholder="Buscar libro..." aria-label="Search"
+                                           id="nombre" name="nombre" data-th-value="${nombre}">
+                                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                                </form>
+                                <br />
+                                <div class="row row-cols-1 row-cols-md-3 g-4">
+
+                                    <div class="col" data-th-each="lib : ${libros}">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title" data-th-text="${lib.tituloLib}">Titulo</h5>
+                                                <p class="card-text" data-th-text="${lib.autorLib}">autor</p>
+                                                <p class="card-text" data-th-text="${lib.anioLib}">año</p>
+                                                <p class="card-text" data-th-text="${lib.editorialLib}">editorial</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div data-th-if="${tipo} == 'google'">
+                                <script async src="https://cse.google.com/cse.js?cx=14806c9f3d04b46b6"></script>
+                                <div class="gcse-search"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-2">
+                <!--mapa del sitio-->
+                <div data-th-replace="fragments/mapasitio :: mapasitio">...</div>
+            </div>
+        </div>
+        <script src="/js/buscador.js"></script>
+    </body>
+</html>

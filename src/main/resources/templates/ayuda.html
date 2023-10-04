@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>BiblioUTEQ</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <script src="js/jquery.js"></script>
+	<script src="js/jquery.dataTables.min.js"></script>
+	<link rel="stylesheet" href="css/estilos.css">
+    </head>
+    <body>
+        <!-- fragmento de menu -->
+        <div data-th-replace="~{fragments/menu :: menu}">...</div>
+        <!-- body -->
+        <div class="row">
+            <div class="col-10">
+                <br />
+                <section class="ftco-section">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-6 text-center mb-5">
+                                <h2 class="heading-section">Ayuda</h2>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-12">
+                                <div class="wrapper">
+                                    <div class="row no-gutters">
+                                        <div class="col-md-7">
+                                            <div class="contact-wrap w-100 p-md-5 p-4">
+                                                <h3 class="mb-4">Preguntas frecuentes</h3>
+                                                <div id="form-message-warning" class="mb-4"></div> 
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <div class="d-grid gap-2">
+                                                                <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pregunta1" aria-expanded="false" aria-controls="pregunta1">
+                                                                    <label class="label" for="subject">¿Cuál es la dirección y horarios de la librería?</label>
+                                                                </button>
+                                                            </div>
+                                                            <div class="collapse" id="pregunta1">
+                                                                <div class="card card-body">
+                                                                    <h6>Nos encontramos en Av. Pie de la Cuesta 2501, Nacional, 76148 Santiago de Querétaro, Qro. Nuestros horarios son de lunes a viernes de 10:00 a.m. a 8:00 p.m. y los sábados de 10:00 a.m. a 5:00 p.m.</h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <div class="d-grid gap-2">
+                                                                <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pregunta2" aria-expanded="false" aria-controls="pregunta2">
+                                                                    <label class="label" for="subject">¿Qué tipo de libros ofrecen en la librería?</label>
+                                                                </button>
+                                                            </div>
+                                                            <div class="collapse" id="pregunta2">
+                                                                <div class="card card-body">
+                                                                    <h6>En nuestra librería ofrecemos una amplia selección de libros en diferentes géneros, incluyendo literatura contemporánea, clásicos, literatura infantil y juvenil, ensayos, libros de historia, ciencia ficción, entre otros.</h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <div class="d-grid gap-2">
+                                                                <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pregunta3" aria-expanded="false" aria-controls="pregunta3">
+                                                                    <label class="label" for="subject">¿Tienen libros en otros idiomas además del español?</label>
+                                                                </button>
+                                                            </div>
+                                                            <div class="collapse" id="pregunta3">
+                                                                <div class="card card-body">
+                                                                    <h6>Sí, contamos con una sección de libros en otros idiomas, como inglés, francés, alemán, italiano, entre otros. Ofrecemos tanto libros originales en su idioma como traducciones.</h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <div class="d-grid gap-2">
+                                                                <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pregunta4" aria-expanded="false" aria-controls="pregunta4">
+                                                                    <label class="label" for="subject">¿Puedo hacer pedidos de libros que no estén en stock?</label>
+                                                                </button>
+                                                            </div>
+                                                            <div class="collapse" id="pregunta4">
+                                                                <div class="card card-body">
+                                                                    <h6>Sí, ofrecemos un servicio de pedidos especiales. Si hay un libro en particular que estás buscando y no está en stock, podemos realizar el pedido para ti y notificarte cuando llegue a la librería.</h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <div class="d-grid gap-2">
+                                                                <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#pregunta5" aria-expanded="false" aria-controls="pregunta5">
+                                                                    <label class="label" for="subject">¿Tienen algún programa de membresía o descuentos para clientes frecuentes?</label>
+                                                                </button>
+                                                            </div>
+                                                            <div class="collapse" id="pregunta5">
+                                                                <div class="card card-body">
+                                                                    <h6>Sí, tenemos un programa de membresía para nuestros clientes frecuentes. Con nuestra membresía, puedes disfrutar de descuentos exclusivos, promociones especiales y acumular puntos que podrás canjear por libros en el futuro.</h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 d-flex align-items-stretch">
+                                            <div class="info-wrap w-100 p-5 img" style="background-image: url(img/img.jpg);">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+            <div class="col-2">
+                <!--mapa del sitio-->
+                <div data-th-replace="~{fragments/mapasitio :: mapasitio}">...</div>
+            </div>
+        </div>
+        <script src="js/buscador.js"></script>
+    </body>
+</html>

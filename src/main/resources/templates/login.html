@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>BiblioUTEQ</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    </head>
+    <body>
+        <br />
+        <br />
+        <br />
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-6 align-self-center">
+                    <div class="card bg-secondary-subtle">
+                        <div class="card-body">
+                            <h2>Iniciar sesión</h2>
+                            <div data-th-if="${errorLogin} != ''">
+                                <div class="alert alert-danger" role="alert">
+                                    <p data-th-text='${errorLogin}'></p>
+                                </div>
+                            </div>
+                            <br />
+                            <form data-th-action="@{/iniciar-sesion}" 
+                                  data-th-object="${usuario}" method="post">
+                                <input type="hidden" id="nameUser" name="nameUser" data-th-field="*{nameUser}"
+                                       value='Nombre del usuario'/>
+                                <div class="row mb-3">
+                                    <label for="emailUser" class="col-sm-5 col-form-label">* Correo</label>
+                                    <div class="col-sm-7">
+                                        <input type="email" class="form-control" id="emailUser" placeholder="ejemplo@bibliouteq.com"
+                                               aria-labelledby="emailHelpInline" data-th-field="*{emailUser}">
+                                        <span id="emailHelpInline" class="form-text text-danger-emphasis" data-th-if="#{fields.hasErrors('emailUser')}"
+                                              data-th-errors="*{emailUser}">Error email</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="passUser" class="col-sm-5 col-form-label">* Contraseña</label>
+                                    <div class="col-sm-7">
+                                        <input type="password" class="form-control" id="passUser" placeholder="password"
+                                               aria-labelledby="passHelpInline" data-th-field="*{passUser}">
+                                        <span id="passHelpInline" class="form-text text-danger-emphasis" data-th-if="#{fields.hasErrors('passUser')}"
+                                              data-th-errors="*{passUser}">Error pass</span>
+                                    </div>
+                                </div>
+                                ¿Olvidaste tu contraseña? <a data-th-href="@{/recuperar-pass}">Click aquí</a>
+                                <br />
+                                <br />
+                                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                                <br />
+                                <br />
+                                ¿No estas registrado? <a data-th-href="@{/registro}">Crea una cuenta</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+    </body>
+</html>
